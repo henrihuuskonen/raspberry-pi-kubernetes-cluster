@@ -37,3 +37,6 @@ touch ssh
   3. Setup wifi (optional)
   4. Reboot `sudo reboot`
 4. Update everything `sudo apt update && sudo apt upgrade && sudo reboot`
+
+Raspberry Pi will automatically drop Wi-Fi connection after a while, this is due to power management. To fix this problem, you can try this:
+`iwconfig wlan0 power off`
