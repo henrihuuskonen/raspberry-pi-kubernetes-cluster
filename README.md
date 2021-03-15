@@ -27,7 +27,7 @@ cd ~/Volumes/boot
 touch ssh
 ```
 
-### Initial setup
+### Initial setup (on each Pi)
 
 1. Find each Pi's IP address
 2. `ssh pi@xxx.xxx.xx.xx`
@@ -41,5 +41,33 @@ touch ssh
 Raspberry Pi will automatically drop Wi-Fi connection after a while, this is due to power management. To fix this problem, you can try this:
 `iwconfig wlan0 power off`
 
+### Installing k3s
+
+```
+Note-to-self: 
+- Tried Ubuntu Server, too demanding and/or other issues
+- Tried k8s, microk8s, all too demanding for 3B+'s
+- k3s!
+```
+
+Ran from local machine:
+1. Install k3sup and arkade
+2. Installing to Pi's
+```
+k3sup install --ip $SERVER --user pi
+k3sup join --ip $AGENT --server-ip $SERVER --user pi
+```
+3. Config will be written to `path/kubeconfig`
+4. export config and check nodes
+```
 export KUBECONFIG=/Users/henrihuuskonen/kubeconfig
 kubectl config set-context default
+kubectl get node -o wide
+```
+
+### Installing Kubernetes Dashboard
+1. Arkade
+```
+arkade install kubernetes-dashboard
+```
+2. Grab token and visit `localhost:8001`
