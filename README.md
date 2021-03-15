@@ -40,3 +40,6 @@ touch ssh
 
 Raspberry Pi will automatically drop Wi-Fi connection after a while, this is due to power management. To fix this problem, you can try this:
 `iwconfig wlan0 power off`
+
+export KUBECONFIG=/Users/henrihuuskonen/kubeconfig
+kubectl config set-context default
